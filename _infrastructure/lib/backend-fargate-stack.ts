@@ -66,7 +66,7 @@ export class BackendFargateStack extends Stack {
                         FRONTEND_URL:
                             'http://chat-app-client-s3.s3-website.eu-north-1.amazonaws.com',
                         HOST:
-                            'ChatA-chata-5PG9T0FAXKAG-1845733310.eu-north-1.elb.amazonaws.com',
+                            'chata-chata-5pg9t0faxkag-1845733310.eu-north-1.elb.amazonaws.com',
                     },
                 },
                 memoryLimitMiB: 4096, // Default is 512

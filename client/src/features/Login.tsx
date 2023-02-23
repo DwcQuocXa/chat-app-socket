@@ -5,12 +5,12 @@ import { Label, TextInput, Button, Card } from 'flowbite-react';
 
 function Login() {
     const { setUsername, setLocation } = useSockets();
-    const usernameRef = useRef<any>(null);
-    const locationRef = useRef<any>(null);
+    const usernameRef = useRef<HTMLInputElement | null>(null);
+    const locationRef = useRef<HTMLInputElement | null>(null);
 
     function handleSetUsername() {
-        const userNameInput = usernameRef.current.value;
-        const locationInput = locationRef.current.value;
+        const userNameInput = usernameRef.current ? usernameRef.current.value : null;
+        const locationInput = locationRef.current ? locationRef.current.value : null;
         if (!userNameInput || !locationInput) {
             return;
         }

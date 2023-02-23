@@ -5,11 +5,11 @@ import { Button, Label, TextInput } from 'flowbite-react';
 
 function Room() {
     const { socket, roomId, rooms, username, location } = useSockets();
-    const newRoomRef = useRef<any>(null);
+    const newRoomRef = useRef<HTMLInputElement | null>(null);
 
     function handleCreateRoom() {
         //get the room name
-        const newRoomName = newRoomRef.current.value || '';
+        const newRoomName = newRoomRef.current ? newRoomRef.current.value : '';
 
         if (!String(newRoomName).trim()) {
             return;
@@ -25,7 +25,9 @@ function Room() {
         );
 
         // set room name input to empty string
-        newRoomRef.current.value = '';
+        if (newRoomRef.current) {
+            newRoomRef.current.value = '';
+        }
     }
 
     function handleJoinRoom(key: string) {

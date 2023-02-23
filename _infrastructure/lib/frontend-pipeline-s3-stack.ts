@@ -49,7 +49,7 @@ export class FrontendPipelineS3Stack extends cdk.Stack {
                     buildImage: codebuild.LinuxBuildImage.AMAZON_LINUX_2_3,
                     privileged: true,
                     environmentVariables: {
-                        SOCKET_URL: { value: '' },
+                        REACT_APP_SOCKET_URL: { value: 'http://chata-chata-5pg9t0faxkag-1845733310.eu-north-1.elb.amazonaws.com' },
                     },
                 },
                 vpc,
