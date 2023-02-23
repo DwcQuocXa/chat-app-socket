@@ -6,7 +6,6 @@ import config from "config";
 import socket from "./socket";
 
 const port = config.get<number>("port");
-const host = config.get<string>("host");
 const corsOrigin = config.get<string>("corsOrigin");
 
 const app = express();
@@ -24,8 +23,8 @@ app.get("/", (_, res) =>
     res.send(`Server is up and running`)
 );
 
-httpServer.listen(port, host, () => {
-    console.log(`http://${host}:${port}`);
+httpServer.listen(port, () => {
+    console.log(`server running on port ${port}`);
 
     socket({ io });
 });

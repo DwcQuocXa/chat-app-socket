@@ -61,12 +61,9 @@ export class BackendFargateStack extends Stack {
                     containerPort: 80,
                     taskRole,
                     environment: {
-                        NODE_ENV: 'test',
                         PORT: '80',
                         FRONTEND_URL:
-                            'http://chat-app-client-s3.s3-website.eu-north-1.amazonaws.com',
-                        HOST:
-                            'chata-chata-5pg9t0faxkag-1845733310.eu-north-1.elb.amazonaws.com',
+                            'http://chat-app-frontend.s3-website.eu-north-1.amazonaws.com',
                     },
                 },
                 memoryLimitMiB: 4096, // Default is 512
