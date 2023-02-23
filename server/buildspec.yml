@@ -1,0 +1,47 @@
+version: 0.2
+
+env:
+  git-credential-helper: yes
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - echo Installing npm packages
+      - n 16
+      - npm install
+      - npm run install:client
+      - npm run install:server
+      - cd _infrastructure
+      - npm install
+  pre_build:
+    commands:
+      - cd ..
+      - REPOSITORY_URI=664269831428.dkr.ecr.eu-north-1.amazonaws.com/chat-app-server
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo Building app
+      - cd server
+      - npm run build
+      - echo Build started on `date`.
+      - echo Building the Docker image...
+      - docker build -t chat-app-server .
+      - echo Build completed on `date`.
+  post_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 664269831428.dkr.ecr.eu-north-1.amazonaws.com
+      - docker tag chat-app-server:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker tag chat-app-server:latest $REPOSITORY_URI:latest
+      - docker images
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - cd ..
+      - printf '[{"name":"web","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json

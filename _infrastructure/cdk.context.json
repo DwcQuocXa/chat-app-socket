@@ -1,0 +1,63 @@
+{
+  "vpc-provider:account=664269831428:filter.tag:Name=VpcStack/Automotive:filter.vpc-id=vpc-09d6be28120dfccc6:region=eu-north-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-09d6be28120dfccc6",
+    "vpcCidrBlock": "10.0.0.0/16",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "private",
+        "type": "Private",
+        "subnets": [
+          {
+            "subnetId": "subnet-0c540fbf79c46ee79",
+            "cidr": "10.0.2.0/24",
+            "availabilityZone": "eu-north-1a",
+            "routeTableId": "rtb-00d86f85302fa195f"
+          },
+          {
+            "subnetId": "subnet-098b74bcfac3c0561",
+            "cidr": "10.0.3.0/24",
+            "availabilityZone": "eu-north-1b",
+            "routeTableId": "rtb-0c226501cc65d3e1f"
+          }
+        ]
+      },
+      {
+        "name": "isolated",
+        "type": "Isolated",
+        "subnets": [
+          {
+            "subnetId": "subnet-0f2fb7f6fb6ac157b",
+            "cidr": "10.0.4.0/28",
+            "availabilityZone": "eu-north-1a",
+            "routeTableId": "rtb-01342d49ce818de1f"
+          },
+          {
+            "subnetId": "subnet-07e92d978924f42e7",
+            "cidr": "10.0.4.16/28",
+            "availabilityZone": "eu-north-1b",
+            "routeTableId": "rtb-01102ca00387eed90"
+          }
+        ]
+      },
+      {
+        "name": "public",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-0f5106a80db06fc40",
+            "cidr": "10.0.0.0/24",
+            "availabilityZone": "eu-north-1a",
+            "routeTableId": "rtb-0f126120d38de8cff"
+          },
+          {
+            "subnetId": "subnet-0bd3e0802a6213d0c",
+            "cidr": "10.0.1.0/24",
+            "availabilityZone": "eu-north-1b",
+            "routeTableId": "rtb-034336d0f616c753d"
+          }
+        ]
+      }
+    ]
+  }
+}

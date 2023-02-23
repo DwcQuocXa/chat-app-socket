@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "prettier": "^2.8.4"
+  },
+  "scripts": {
+    "install:client": "concurrently \"cd client && npm install\" ",
+    "install:server": "concurrently \"cd server && npm install\" "
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

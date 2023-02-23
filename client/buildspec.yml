@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - echo Installing npm packages
+      - n 16
+      - npm install serve -g
+      - npm install
+      - npm run install:client
+      - npm run install:server
+      - cd _infrastructure
+      - npm install
+      - cd ..
+  build:
+    commands:
+      - echo Building react app
+      - cd ./client
+      - npm run build
+      - echo Built react app on `date`
+      - cd ..
+
+artifacts:
+  base-directory: ./client/build
+  files:
+    - '**/*'
